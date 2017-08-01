@@ -25,9 +25,8 @@ var getMyTweets = function() {
 
 var getSpotSong = function() {
     if (nodeArg2 === undefined) {
-    nodeArg2 = "What\"s my age again";
-  }
-  
+    nodeArg2 = "I want it that way";
+  }   
     request('http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + nodeArg2 + '&api_key=fb6d3665dab0f479fdd67ee22b3e516e&format=json'
     , function (error, response, body) {
         console.log("Artist: " + JSON.parse(body).results.trackmatches.track[0].artist);
