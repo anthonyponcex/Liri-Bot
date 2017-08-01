@@ -2,7 +2,6 @@
 var Twitter = require('twitter');
 var fs = require('file-system');
 var keys = require('./keys.js');
-
 var request = require('request');
 
 
@@ -25,6 +24,10 @@ var getMyTweets = function() {
 }
 
 var getSpotSong = function() {
+    if (nodeArg2 === undefined) {
+    nodeArg2 = "What\"s my age again";
+  }
+  
     request('http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + nodeArg2 + '&api_key=fb6d3665dab0f479fdd67ee22b3e516e&format=json'
     , function (error, response, body) {
         console.log("Artist: " + JSON.parse(body).results.trackmatches.track[0].artist);
@@ -34,8 +37,12 @@ var getSpotSong = function() {
 }
 
 var getMovies = function () {
+     if (nodeArg2 === undefined) {
+    nodeArg2 = "Mr Nobody";
+  }
     request('http://www.omdbapi.com/?apikey=fd384cc4&?t=' + nodeArg2 + "&y=&plot=short&r=json"
     , function (error, response, body) {
+        console.log("Your Search: " + nodeArg2);
         console.log("Release Year: " + JSON.parse(body).Year);
         console.log("IMDB: " + JSON.parse(body).imdbRating);
         console.log("Country: " + JSON.parse(body).Country);
